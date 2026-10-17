@@ -1,0 +1,360 @@
+<!DOCTYPE html >
+<html lang="es" >
+<head >
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title >¡Feliz Día Mamá!</title >
+  <script src="https://cdn.tailwindcss.com" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" ></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at center, #fff1f2 0%, #ffe4e6 50%, #fecdd3 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .font-handwriting {
+      font-family: 'Caveat', cursive;
+    }
+    .stem {
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawStem 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes drawStem {
+      to { stroke-dashoffset: 0; }
+    }
+    .bloom {
+      transform-origin: center;
+      transform: scale(0);
+      animation: bloomPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    @keyframes bloomPop {
+      to { transform: scale(1); }
+    }
+    .delay-1 { animation-delay: 0.4s; }
+    .delay-2 { animation-delay: 0.7s; }
+    .delay-3 { animation-delay: 1.0s; }
+    .delay-4 { animation-delay: 1.3s; }
+    .delay-5 { animation-delay: 1.6s; }
+
+    .glow-pulse {
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.35)); }
+      50% { filter: drop-shadow(0 0 26px rgba(244, 63, 94, 0.75)); }
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center p-4 selection:bg-pink-300 selection:text-pink-900">
+
+  <!-- ETAPA 1: BROMA INICIAL -->
+  <main id="joke-card" class="bg-white/90 backdrop-blur-md border-2 border-pink-200 rounded-3xl p-8 md:p-12 shadow-2xl max-w-lg w-full text-center transition-all duration-700 transform">
+    <h1 class="text-3xl md:text-4xl font-black text-gray-800 tracking-tight leading-tight mb-4">
+      No hay regalo...
+    </h1>
+    <p class="text-xl md:text-2xl font-bold text-rose-500 mb-8">
+      Ya estas grandecita como para pedir cosas
+    </p>
+  </main>
+
+  <!-- ETAPA 2: REVELACIÓN Y RAMO -->
+  <main id="reveal-card" class="hidden flex-col items-center max-w-2xl w-full text-center transition-all duration-700">
+    <h2 class="text-2xl md:text-3xl font-extrabold text-pink-600 tracking-wide uppercase drop-shadow-sm mb-1">
+      ¡Nah, mentira!
+    </h2>
+    <h1 class="text-4xl md:text-6xl font-black text-rose-600 tracking-tight mb-6 drop-shadow">
+      ¡FELIZ DÍA DE LAS MADRES!
+    </h1>
+
+    <!-- Ramo animado en SVG -->
+    <div class="relative w-72 h-80 md:w-96 md:h-96 my-2 glow-pulse flex items-center justify-center">
+      <svg class="w-full h-full drop-shadow-lg" viewBox="0 0 400 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <style>
+            .stem {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawStem 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          @keyframes drawStem {
+            to { stroke-dashoffset: 0; }
+          }
+          .bloom-grow {
+            transform-box: fill-box;
+            transform-origin: center center;
+            transform: scale(0);
+            animation: bloomPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+          }
+          @keyframes bloomPop {
+            to { transform: scale(1); }
+          }
+          .d-1 { animation-delay: 0.3s; }
+          .d-2 { animation-delay: 0.6s; }
+          .d-3 { animation-delay: 0.9s; }
+          .d-4 { animation-delay: 1.2s; }
+          .d-5 { animation-delay: 1.5s; }
+        </style>
+
+        <!-- Tallos verdes -->
+        <g stroke="#15803d" stroke-width="7" stroke-linecap="round">
+          <path d="M 200 420 Q 195 330 140 220" class="stem d-1" />
+          <path d="M 200 420 Q 200 320 200 170" class="stem" />
+          <path d="M 200 420 Q 205 330 260 220" class="stem d-1" />
+          <path d="M 200 420 Q 180 340 100 250" class="stem d-2" />
+          <path d="M 200 420 Q 220 340 300 250" class="stem d-2" />
+        </g>
+
+        <!-- Hojas -->
+        <g fill="#22c55e" opacity="0.9">
+          <ellipse cx="165" cy="300" rx="22" ry="10" transform="rotate(-35 165 300)" class="bloom-grow d-2" />
+          <ellipse cx="235" cy="310" rx="22" ry="10" transform="rotate(35 235 310)" class="bloom-grow d-2" />
+          <ellipse cx="140" cy="350" rx="18" ry="8" transform="rotate(-20 140 350)" class="bloom-grow d-3" />
+          <ellipse cx="260" cy="355" rx="18" ry="8" transform="rotate(20 260 355)" class="bloom-grow d-3" />
+        </g>
+
+        <!-- Flor izquierda (Tulipán Rosa) -->
+        <g transform="translate(140, 220)">
+          <g class="bloom-grow d-2">
+            <path d="M -25 -10 C -25 -40, -5 -50, 0 -35 C 5 -50, 25 -40, 25 -10 C 25 20, -25 20, -25 -10 Z" fill="#f43f5e" />
+            <path d="M -15 0 C -15 -30, 0 -40, 0 -20 C 0 -40, 15 -30, 15 0 Z" fill="#fda4af" />
+          </g>
+        </g>
+
+        <!-- Flor derecha (Tulipán Amarillo / Naranja) -->
+        <g transform="translate(260, 220)">
+          <g class="bloom-grow d-2">
+            <path d="M -25 -10 C -25 -40, -5 -50, 0 -35 C 5 -50, 25 -40, 25 -10 C 25 20, -25 20, -25 -10 Z" fill="#fbbf24" />
+            <path d="M -15 0 C -15 -30, 0 -40, 0 -20 C 0 -40, 15 -30, 15 0 Z" fill="#fef08a" />
+          </g>
+        </g>
+
+        <!-- Margarita izquierda externa -->
+        <g transform="translate(100, 250)">
+          <g class="bloom-grow d-3">
+            <g fill="#ffffff" stroke="#e2e8f0" stroke-width="1">
+              <circle cx="0" cy="-20" r="8" />
+              <circle cx="15" cy="-14" r="8" />
+              <circle cx="20" cy="3" r="8" />
+              <circle cx="12" cy="18" r="8" />
+              <circle cx="-5" cy="20" r="8" />
+              <circle cx="-18" cy="10" r="8" />
+              <circle cx="-19" cy="-8" r="8" />
+              <circle cx="-8" cy="-19" r="8" />
+            </g>
+            <circle cx="0" cy="0" r="9" fill="#facc15" />
+          </g>
+        </g>
+
+        <!-- Margarita derecha externa -->
+        <g transform="translate(300, 250)">
+          <g class="bloom-grow d-3">
+            <g fill="#ffffff" stroke="#e2e8f0" stroke-width="1">
+              <circle cx="0" cy="-20" r="8" />
+              <circle cx="15" cy="-14" r="8" />
+              <circle cx="20" cy="3" r="8" />
+              <circle cx="12" cy="18" r="8" />
+              <circle cx="-5" cy="20" r="8" />
+              <circle cx="-18" cy="10" r="8" />
+              <circle cx="-19" cy="-8" r="8" />
+              <circle cx="-8" cy="-19" r="8" />
+            </g>
+            <circle cx="0" cy="0" r="9" fill="#facc15" />
+          </g>
+        </g>
+
+        <!-- Flor Central (Gran Rosa Roja) -->
+        <g transform="translate(200, 170)">
+          <g class="bloom-grow d-4">
+            <circle cx="0" cy="0" r="38" fill="#e11d48" />
+            <path d="M -26 -15 C -15 -35, 15 -35, 26 -15 C 36 2, 10 32, 0 32 C -10 32, -36 2, -26 -15 Z" fill="#be123c" />
+            <path d="M -16 -10 C -10 -22, 10 -22, 16 -10 C 22 0, 8 20, 0 20 C -8 20, -22 0, -16 -10 Z" fill="#f43f5e" />
+            <circle cx="0" cy="0" r="10" fill="#fda4af" />
+          </g>
+        </g>
+
+        <!-- Moño del ramo -->
+        <g transform="translate(200, 395)">
+          <g class="bloom-grow d-5">
+            <!-- Cintas colgantes -->
+            <path d="M -5 5 Q -25 35 -35 50" stroke="#f43f5e" stroke-width="6" stroke-linecap="round" fill="none" />
+            <path d="M 5 5 Q 25 35 35 50" stroke="#f43f5e" stroke-width="6" stroke-linecap="round" fill="none" />
+            <!-- Lazos -->
+            <ellipse cx="-22" cy="-6" rx="20" ry="12" fill="#fb7185" transform="rotate(-20 -22 -6)" />
+            <ellipse cx="22" cy="-6" rx="20" ry="12" fill="#fb7185" transform="rotate(20 22 -6)" />
+            <circle cx="0" cy="-6" r="9" fill="#e11d48" />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="flex flex-wrap items-center justify-center gap-4 mt-4">
+      <button id="letter-btn" class="bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 px-6 rounded-2xl shadow-lg hover:shadow-rose-300/50 hover:scale-105 active:scale-95 transition cursor-pointer">
+        💌 Abrir cartita para vos
+      </button>
+      <button id="confetti-btn" class="bg-white/80 hover:bg-white text-rose-600 font-semibold py-3 px-5 rounded-2xl shadow border border-rose-200 hover:scale-105 active:scale-95 transition cursor-pointer">
+        🎉 ¡Más festejo!
+      </button>
+    </div>
+
+    <!-- Cartita dedicatoria -->
+    <div id="letter-modal" class="hidden mt-6 bg-amber-50/95 border-2 border-amber-200 rounded-2xl p-6 md:p-8 shadow-xl max-w-lg w-full text-left font-handwriting text-2xl text-amber-950 transition-all duration-300">
+      <p class="text-3xl font-bold mb-3 text-rose-700" >¡Para la mejor mamá del mundo!</p>
+      <p class="mb-4 leading-relaxed">
+        Gracias por estar siempre, por bancarme en todas y por el cariño infinito que me das todos los días. 
+        ¡Te merecés esto y muchísimo más!
+      </p>
+    </div>
+  </main>
+
+  <script>
+    const TIEMPO_ESPERA = 3500;
+
+    const jokeCard = document.getElementById('joke-card');
+    const revealCard = document.getElementById('reveal-card');
+    const confettiBtn = document.getElementById('confetti-btn');
+    const letterBtn = document.getElementById('letter-btn');
+    const letterModal = document.getElementById('letter-modal');
+
+    let revealed = false;
+    let audioCtx = null;
+
+    // Inicializa o desbloquea el contexto de audio con cualquier toque
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioCtx();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Escucha cualquier interacción inicial en la pantalla para habilitar el sonido
+    window.addEventListener('click', initAudio, { once: true });
+    window.addEventListener('touchstart', initAudio, { once: true });
+
+    // Melodía: "En mi corazón tú vivirás"
+    function playMelody() {
+      try {
+        initAudio();
+
+        // Factor de lentitud: 1.0 es velocidad original.
+        // Subilo a 1.4 o 1.5 para que vaya más lenta y tranquila.
+        const TEMPO_FACTOR = 1.4;
+
+        // la la re're'la sol la la mi'mi' sol fa# la la re're' la sol mi'mi' fa# mi
+        const notes = [
+          // "la la re' re' la sol"
+          { f: 440.00, d: 0.5}, // la
+          { f: 440.00, d: 0.73}, // la
+          { f: 587.33, d: 0.9 }, // re'
+          { f: 440.00, d: 0.45 }, // la
+          { f: 392.00, d: 0.60 }, // sol
+
+          { f: 0, d: 0.40 },      // pausa
+
+          // "la la mi' mi' sol fa#"
+          { f: 440.00, d: 0.5 }, // la
+          { f: 440.00, d: 0.73 }, // la
+          { f: 659.25, d: 0.9 }, // mi'
+          { f: 392.00, d: 0.45 }, // sol
+          { f: 369.99, d: 0.70 }, // fa#
+
+          { f: 0, d: 0.5 },      // pausa
+
+          // "la la re' re' la sol"
+          { f: 440.00, d: 0.5 }, // la
+          { f: 440.00, d: 0.5}, // la
+          { f: 587.33, d: 0.35 }, // re'
+          { f: 587.33, d: 0.8}, // re'
+          { f: 440.00, d: 0.45 }, // la
+          { f: 392.00, d: 0.60 }, // sol
+
+          // "mi' mi' fa# mi"
+          { f: 659.25, d: 0.40 }, // mi'
+          { f: 659.25, d: 0.6 }, // mi'
+          { f: 369.99, d: 0.45 }, // fa#
+          { f: 329.63, d: 0.90 }  // mi
+        ];
+
+        let now = audioCtx.currentTime + 0.1;
+
+        notes.forEach(note => {
+          // Escalamos la duración con el tempo elegido
+          const duration = note.d * TEMPO_FACTOR;
+
+          if (note.f > 0) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(note.f, now);
+
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.linearRampToValueAtTime(0.35, now + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + duration + 0.05);
+          }
+          now += duration * 0.95;
+        });
+      } catch (e) {
+        console.log("Audio en espera de interacción:", e);
+      }
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#f43f5e', '#fb7185', '#fda4af', '#facc15', '#38bdf8']
+        });
+      }
+    }
+
+    function triggerReveal() {
+      if (revealed) return;
+      revealed = true;
+
+      jokeCard.classList.add('opacity-0', 'scale-90');
+      setTimeout(() => {
+        jokeCard.classList.add('hidden');
+        revealCard.classList.remove('hidden');
+        revealCard.classList.add('flex');
+        playMelody();
+        triggerConfetti();
+        setTimeout(triggerConfetti, 400);
+      }, 500);
+    }
+
+    // Transición automática al cabo del tiempo seteado
+    setTimeout(triggerReveal, TIEMPO_ESPERA);
+
+    // Botón de festejo (también repite la canción)
+    confettiBtn.addEventListener('click', () => {
+      triggerConfetti();
+      playMelody();
+    });
+
+    // Desplegar cartita
+    letterBtn.addEventListener('click', () => {
+      letterModal.classList.toggle('hidden');
+      if (!letterModal.classList.contains('hidden')) {
+        letterModal.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
